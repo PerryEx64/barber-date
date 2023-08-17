@@ -26,9 +26,9 @@ export const GetUser = async (email) => {
  */
 export const userTypeNavigate = (typeUser) => {
   const navigations = {
-    client: 'Client',
-    owner: 'Owner',
-    barber: 'Barber'
+    client: 'StackClient',
+    owner: 'StackOwner',
+    barber: 'StackBarber'
   }
 
   return navigations[typeUser]

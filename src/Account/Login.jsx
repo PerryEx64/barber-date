@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import {
+  Dimensions,
   Image,
   KeyboardAvoidingView,
   Platform,
@@ -14,10 +15,12 @@ import tailwind from 'twrnc'
 import useGetDataUser from '../../hooks/useGetDataUser'
 import { auth } from '../../services/CloudConection'
 import FooterLogin from './components/FooterLogin'
+import CircleTop from './components/CircleTop'
 
 const Login = () => {
   const [loading, setLoading] = React.useState(false)
   const { getUser } = useGetDataUser()
+  const widthScreen = Dimensions.get('window')
   const { control, handleSubmit } = useForm({
     defaultValues: {
       usuario: 'test@test.com',
@@ -46,16 +49,10 @@ const Login = () => {
   }
 
   return (
-    <SafeAreaView style={tailwind`flex-1 relative justify-between`}>
-      <View style={tailwind`items-end w-full`}>
-        <Image
-          // eslint-disable-next-line no-undef
-          source={require('../../assets/circulo-login.png')}
-          style={tailwind` h-56 w-56`}
-        />
-      </View>
+    <SafeAreaView style={tailwind`flex-1 relative justify-between bg-[#f3f3f3]`}>
+      <CircleTop />
       <KeyboardAvoidingView
-        style={styles.container}
+        style={[styles.container, tailwind`${widthScreen.width > 800 ? 'w-2/3 ml-auto mr-auto' : ''}`]}
         behavior={Platform.OS === 'ios' ? 'height' : 'height'}
       >
         <View style={styles.main}>
@@ -122,7 +119,7 @@ const Login = () => {
         <Image
           // eslint-disable-next-line no-undef
           source={require('../../assets/circulo-login-down.png')}
-          style={tailwind` h-56 w-56`}
+          style={tailwind`${widthScreen.width > 800 ? 'w-86 h-86' : 'h-56 w-56'}`}
         />
       </View>
     </SafeAreaView>

@@ -2,6 +2,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import StackAccount from './StackAccount'
 import StackClient from './StackClient'
+import StackBarber from './StackBarber'
+import StackOwner from './StackOwner'
 
 const AppNavigation = () => {
   const Stack = createNativeStackNavigator()
@@ -19,7 +21,21 @@ const AppNavigation = () => {
         name='StackClient'
         component={StackClient}
         options={{
-          headerShown: true
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name='StackBarber'
+        component={StackBarber}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name='StackOwner'
+        component={StackOwner}
+        options={{
+          headerShown: false
         }}
       />
     </Stack.Navigator>

@@ -1,19 +1,34 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { Fontisto, Ionicons } from '@expo/vector-icons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
-import Client from '../src/Client'
+import Barber from '../src/Client/Barber'
+import Profile from '../src/Client/Profile'
 
 const StackClient = () => {
-  const Stack = createNativeStackNavigator()
+  const Tab = createBottomTabNavigator()
   return (
-    <Stack.Navigator initialRouteName='Client'>
-      <Stack.Screen
-        name='Client'
-        component={Client}
+    <Tab.Navigator>
+      <Tab.Screen
+        name='barberClient'
+        component={Barber}
         options={{
-          headerShown: true
+          title: 'Perfil',
+          tabBarIcon: ({ size, color }) => (
+            <Fontisto name='date' size={size} color={color} />
+          )
         }}
       />
-    </Stack.Navigator>
+      <Tab.Screen
+        name='profile'
+        component={Profile}
+        options={{
+          title: 'Perfil',
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name='person-circle-outline' size={size} color={color} />
+          )
+        }}
+      />
+    </Tab.Navigator>
   )
 }
 

@@ -20,7 +20,7 @@ const FooterLogin = () => {
         </Text>
 
         <TouchableOpacity 
-        onPress={() => navigation.navigate('Register')}>
+        onPress={() => navigation.navigate('register')}>
           <Text category='s1' status='info' style={tailwind`text-center`}>
             {'Registrate'}
           </Text>

@@ -7,23 +7,23 @@ const StackAccount = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-    <Stack.Navigator initialRouteName='Login'>
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+    <Stack.Navigator initialRouteName='login'>
+     
         <Stack.Screen
-          name='Login'
+          name='login'
           component={Login}
           options={{
             headerShown: false
           }}
         />
         <Stack.Screen
-          name='Register'
+          name='register'
           component={Register}
           options={{
             headerShown: false
           }}
         />
-      </Stack.Group>
+     
     </Stack.Navigator>
   )
 }
