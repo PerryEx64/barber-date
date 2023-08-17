@@ -1,23 +1,23 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
-import Login from '../src/Account/Login'
-import Client from '../src/Client'
+import StackAccount from './StackAccount'
+import StackClient from './StackClient'
 
 const AppNavigation = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-    <Stack.Navigator initialRouteName='Login'>
+    <Stack.Navigator initialRouteName='StackAccount'>
       <Stack.Screen
-        name='Login'
-        component={Login}
+        name='StackAccount'
+        component={StackAccount}
         options={{
           headerShown: false
         }}
       />
       <Stack.Screen
-        name='Client'
-        component={Client}
+        name='StackClient'
+        component={StackClient}
         options={{
           headerShown: true
         }}
