@@ -24,6 +24,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'comma-dangle': ['error', 'never'],
     quotes: ['error', 'single'],
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'no-undef': 'off'
   }
 }
