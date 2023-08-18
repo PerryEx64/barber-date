@@ -5,7 +5,11 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import tailwind from 'twrnc'
-import { initialState, selectUser, setUser } from '../../../app/features/userSlice'
+import {
+  initialState,
+  selectUser,
+  setUser
+} from '../../../app/features/userSlice'
 import { onSignOut } from '../../../services/Account'
 import InputProfile from '../../components/InputProfile'
 
@@ -16,7 +20,7 @@ const Profile = () => {
 
   const handleSesion = () => {
     onSignOut().then((res) => {
-      if(res == 'ok') {
+      if (res == 'ok') {
         dispatch(setUser(initialState.user))
         navigation.navigate('login')
       }
@@ -35,11 +39,11 @@ const Profile = () => {
       </Layout>
 
       <TouchableOpacity
-        style={tailwind`flex-row items-center gap-2 ml-5 mb-5 bg-red-400 self-start p-1.5 rounded-sm`}
+        style={tailwind`flex-row items-center gap-2 ml-5 mb-3 bg-red-400 self-start p-1.5 rounded-md`}
         onPress={() => handleSesion()}
       >
-        <AntDesign name="logout" size={24} color="white" />
-        <Text category='s1' style={tailwind`text-white`}>
+        <AntDesign name='logout' size={20} color='white' />
+        <Text category='c1' style={tailwind`text-white`}>
           {'Cerrar Sesion'}
         </Text>
       </TouchableOpacity>
