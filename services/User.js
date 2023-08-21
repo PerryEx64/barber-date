@@ -40,7 +40,6 @@ export const userTypeNavigate = (typeUser) => {
  * @returns Horarios disponible para hacer cita
  */
 export const GetScheduleUser = async (email) => {
-  console.log('deffff', email)
   const docRef = doc(db, 'users', email, 'setings', 'schedule')
   const docSnap = await getDoc(docRef)
 

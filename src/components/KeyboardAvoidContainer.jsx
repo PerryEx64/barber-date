@@ -3,8 +3,7 @@ import React from 'react'
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
-  ScrollView
+  SafeAreaView
 } from 'react-native'
 
 const KeyboardAvoidContainer = ({ children }) => {
@@ -12,12 +11,10 @@ const KeyboardAvoidContainer = ({ children }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <Layout level='1' style={{ flex: 1 }}>
         <KeyboardAvoidingView
-          style={{ flex: 1 }}
+          style={{ flex: 1}}
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         >
-          <ScrollView showsVerticalScrollIndicator={false}>
             {children}
-          </ScrollView>
         </KeyboardAvoidingView>
       </Layout>
     </SafeAreaView>
