@@ -12,18 +12,6 @@ const Barbers = ({ barber, price }) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
-  const handleAvatar = (avatar) => {
-    const requires = {
-      1: require('../../../../assets/avatars/1.png'),
-      2: require('../../../../assets/avatars/2.png'),
-      3: require('../../../../assets/avatars/3.png'),
-      4: require('../../../../assets/avatars/4.png'),
-      5: require('../../../../assets/avatars/5.png')
-    }
-
-    return requires[avatar]
-  }
-
   const handleSubmit = () => {
     dispatch(setBarberChosen(barber))
     navigation.navigate('schedule')

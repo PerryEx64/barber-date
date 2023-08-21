@@ -5,17 +5,14 @@ import { Controller, useForm } from 'react-hook-form'
 import {
   Dimensions,
   Image,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
   View
 } from 'react-native'
 import tailwind from 'twrnc'
 import useGetDataUser from '../../hooks/useGetDataUser'
 import { auth } from '../../services/CloudConection'
-import FooterLogin from './components/FooterLogin'
+import KeyBoardAvoidContainer from '../components/KeyboardAvoidContainer'
 import CircleTop from './components/CircleTop'
+import FooterLogin from './components/FooterLogin'
 
 const Login = () => {
   const [loading, setLoading] = React.useState(false)
@@ -49,13 +46,10 @@ const Login = () => {
   }
 
   return (
-    <SafeAreaView style={tailwind`flex-1 relative justify-between bg-[#f3f3f3]`}>
-      <CircleTop />
-      <KeyboardAvoidingView
-        style={[styles.container, tailwind`${widthScreen.width > 800 ? 'w-2/3 ml-auto mr-auto' : ''}`]}
-        behavior={Platform.OS === 'ios' ? 'height' : 'height'}
-      >
-        <View style={styles.main}>
+    <KeyBoardAvoidContainer>
+      <View style={{ flex: 1, justifyContent: 'space-between' }}>
+        <CircleTop />
+        <View style={{ marginHorizontal: 25 }}>
           <Text category='h5' style={{ marginBottom: 15 }}>
             {'Iniciar Sesion'}
           </Text>
@@ -111,45 +105,20 @@ const Login = () => {
             </Button>
           )}
         </View>
-      </KeyboardAvoidingView>
 
-      <FooterLogin />
+        <FooterLogin />
 
-      <View style={tailwind`ml-5`}>
-        <Image
-          // eslint-disable-next-line no-undef
-          source={require('../../assets/circulo-login-down.png')}
-          style={tailwind`${widthScreen.width > 800 ? 'w-86 h-86' : 'h-56 w-56'}`}
-        />
+        <View style={tailwind`ml-5`}>
+          <Image
+            source={require('../../assets/circulo-login-down.png')}
+            style={tailwind`${
+              widthScreen.width > 800 ? 'w-86 h-86' : 'h-56 w-56'
+            }`}
+          />
+        </View>
       </View>
-    </SafeAreaView>
+    </KeyBoardAvoidContainer>
   )
 }
 
 export default Login
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center'
-  },
-  main: {
-    marginHorizontal: 25,
-    padding: 2
-  },
-  firstCircle: {
-    backgroundColor: 'blue'
-  },
-  secondCircle: {},
-  captionContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  captionText: {
-    fontSize: 12,
-    fontWeight: '400',
-    fontFamily: 'opensans-regular',
-    color: '#8F9BB3'
-  }
-})
