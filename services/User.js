@@ -26,6 +26,7 @@ export const GetUser = async (email) => {
  */
 export const userTypeNavigate = (typeUser) => {
   const navigations = {
+    admin: 'TabAdmin',
     client: 'StackClient',
     owner: 'StackOwner',
     barber: 'StackBarber'
