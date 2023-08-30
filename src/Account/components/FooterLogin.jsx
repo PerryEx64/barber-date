@@ -10,13 +10,13 @@ const FooterLogin = () => {
     <View style={tailwind`gap-1.5 m-5`}>
       <TouchableOpacity>
         <Text category='p2' style={tailwind`text-center`}>
-          {'Se te olvido la contrase;a?'}
+          {'¿Se te olvido la contraseña?'}
         </Text>
       </TouchableOpacity>
 
       <View style={tailwind`flex-row justify-center gap-1 items-center`}>
         <Text category='p2' style={tailwind`text-center`}>
-          {'No tienes una cuenta?'}
+          {'¿No tienes una cuenta?'}
         </Text>
 
         <TouchableOpacity 
@@ -29,7 +29,7 @@ const FooterLogin = () => {
 
       <View style={tailwind`flex-row justify-center gap-1 items-center`}>
           <Text category='p2' style={tailwind`text-center`}>
-            {'Eres un barbero?'}
+            {'¿Eres un barbero?'}
           </Text>
 
           <TouchableOpacity
