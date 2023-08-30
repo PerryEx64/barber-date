@@ -25,7 +25,7 @@ export const CreateUser = (data) => {
   })
 }
 
-const CreateUserInCollection = async (data) => {
+export const CreateUserInCollection = async (data) => {
   await setDoc(doc(db, 'users', data.email), data)
 }
 

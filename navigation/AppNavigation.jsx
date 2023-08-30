@@ -1,9 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 import StackAccount from './StackAccount'
-import StackClient from './StackClient'
 import StackBarber from './StackBarber'
+import StackClient from './StackClient'
 import StackOwner from './StackOwner'
+import TabAdmin from './TabAdmin'
 
 const AppNavigation = () => {
   const Stack = createNativeStackNavigator()
@@ -13,6 +14,13 @@ const AppNavigation = () => {
       <Stack.Screen
         name='StackAccount'
         component={StackAccount}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name='TabAdmin'
+        component={TabAdmin}
         options={{
           headerShown: false
         }}

@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React from 'react'
+import React from 'react';
 import Profile from '../src/Barber/Profile';
-import Reservations from '../src/Barber/Reservations'
+import Reservations from '../src/Barber/Reservations';
 
 const StackBarber = () => {
   const Tab = createBottomTabNavigator()
