@@ -74,7 +74,7 @@ const Login = () => {
         <View style={{ marginHorizontal: 25 }}>
 
           <Text category='h5' style={{ marginBottom: 15, textAlign: 'center', alignSelf: 'center' }}>
-            {'Iniciar Sesion'}
+            {'Iniciar Sesión'}
           </Text>
 
           <Controller
