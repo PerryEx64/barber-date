@@ -72,7 +72,8 @@ const Login = () => {
       <View style={{ flex: 1, justifyContent: 'space-between' }}>
         <CircleTop />
         <View style={{ marginHorizontal: 25 }}>
-          <Text category='h5' style={{ marginBottom: 15 }}>
+
+          <Text category='h5' style={{ marginBottom: 15, textAlign: 'center', alignSelf: 'center' }}>
             {'Iniciar Sesion'}
           </Text>
 
@@ -84,7 +85,7 @@ const Login = () => {
             render={({ field: { onChange, value } }) => (
               <Input
                 label={'Usuario'}
-                style={{ marginBottom: 10 }}
+                style={tailwind`mb-4 rounded-lg`}
                 placeholder='nombre de usuario'
                 value={value}
                 onChangeText={onChange}
@@ -101,9 +102,10 @@ const Login = () => {
             }}
             render={({ field: { onChange, value } }) => (
               <Input
-                label={'Usuario'}
+                label={'Contraseña'}
                 disabled={loading}
-                placeholder='nombre de usuario'
+                style={tailwind`mb-4 rounded-lg`}
+                placeholder='contraseña'
                 value={value}
                 onChangeText={onChange}
                 secureTextEntry={true}
@@ -113,26 +115,26 @@ const Login = () => {
             name='password'
           />
 
-          {loading == true ? (
+          {loading ? (
             <View style={tailwind`self-center mt-5`}>
-              <Spinner status='warning' />
+              <Spinner status='warning' size='giant' />
             </View>
           ) : (
             <View>
               <Button
                 disabled={loading}
                 onPress={handleSubmit(onSubmit)}
-                style={tailwind`mt-4`}
+                style={tailwind`mt-4 rounded-lg`}
               >
                 Iniciar Sesión
               </Button>
               <Button
                 disabled={loading}
                 onPress={onGoogleSubmit}
-                style={tailwind`mt-4`}
+                style={[tailwind`mt-4 rounded-lg`, { backgroundColor: '#4285F4', borderColor: '#4285F4' }]}
                 accessoryLeft={GoogleIcon}
               >
-                Iniciar con Google
+                <Text style={{ color: 'white' }}>Iniciar con Google</Text>
               </Button>
             </View>
           )}
@@ -143,15 +145,12 @@ const Login = () => {
         <View style={tailwind`ml-5`}>
           <Image
             source={require('../../assets/circulo-login-down.png')}
-            style={tailwind`${
-              widthScreen.width > 800 ? 'w-86 h-86' : 'h-56 w-56'
-            }`}
+            style={tailwind`${widthScreen.width > 800 ? 'w-86 h-86' : 'h-56 w-56'}`}
           />
         </View>
       </View>
     </KeyBoardAvoidContainer>
   );
-
 };
 
 export default Login;
