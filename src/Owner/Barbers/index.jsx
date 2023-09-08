@@ -2,25 +2,31 @@ import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { Input, Layout } from '@ui-kitten/components'
 import React from 'react'
-import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { GetBarbershops } from '../../../services/BarberShop'
-import CardBarbershop from '../../Client/Barber/components/CardBarbershop'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectUpdateBarbers } from '../../../app/features/updateSlice'
+import { selectUser } from '../../../app/features/userSlice'
+import { GetBarbers } from '../../../services/BarberShop'
+import ListBarbers from './components/ListBarbers'
 
-const BarbersShop = () => {
+const Barbers = () => {
   const [search, setSearch] = React.useState('')
-  const [barbershops, setBarbershops] = React.useState([])
+  const updated = useSelector(selectUpdateBarbers)
+  const dispatch = useDispatch()
+  const user = useSelector(selectUser)
   const navigation = useNavigation()
 
   const handleNavigation = () => {
-    navigation.navigate('barbershopCreate')
+    navigation.navigate('crearbarberos')
   }
 
   React.useEffect(() => {
-    GetBarbershops(setBarbershops)
-  }, [])
+    /* GetBarbershop(dispatch, user.idBarbershop) */
+    GetBarbers(dispatch, user.idBarbershop)
+  }, [updated])
 
   return (
-    <Layout level='1' style={styles.container}>
+    <Layout level='1' style={{flex: 1}}>
       <View style={styles.header}>
         <Input
           style={{ width: '80%' }}
@@ -34,16 +40,12 @@ const BarbersShop = () => {
         </TouchableOpacity>
       </View>
 
-      <FlatList
-        style={styles.barbershops}
-        data={barbershops}
-        renderItem={({ item }) => <CardBarbershop barbershop={item} admin />}
-      />
+      <ListBarbers idBarbershop={user.idBarbershop}/>
     </Layout>
   )
 }
 
-export default BarbersShop
+export default Barbers
 
 const styles = StyleSheet.create({
   container: {
@@ -54,11 +56,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 10
-  },
-  barbershops: {
-    width: '80%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: 15
   }
 })

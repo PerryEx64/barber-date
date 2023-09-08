@@ -1,5 +1,5 @@
-import { Image, StyleSheet } from 'react-native'
 import React from 'react'
+import { Image, StyleSheet } from 'react-native'
 
 const Avatar = ({ avatar, size }) => {
   const handleAvatar = () => {
@@ -13,14 +13,24 @@ const Avatar = ({ avatar, size }) => {
     return requires[avatar]
   }
 
+  const handleSize = (sizeIcon) => {
+    const sizes = {
+      sm: 24,
+      md: 85,
+      lg: 110
+    }
+
+    return sizes[sizeIcon]
+  }
+
   return (
     <Image
       source={handleAvatar()}
       style={[
         style.avatar,
         {
-          width: size === 'md' ? 85 : 110,
-          height: size === 'md' ? 85 : 110
+          width: handleSize(size),
+          height: handleSize(size)
         }
       ]}
     />

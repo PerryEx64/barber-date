@@ -1,14 +1,12 @@
 import { Layout, SelectItem, Select as SelectUi } from '@ui-kitten/components'
 import React from 'react'
-import { DATAAVATAR } from '../../utils/ConstansAvatar'
 import { Image } from 'react-native'
-import tailwind from 'twrnc'
+import { DATAAVATAR } from '../../utils/ConstansAvatar'
 
 const Select = () => {
   const [selectedIndex, setSelectedIndex] = React.useState()
 
   const handleAvatar = (avatar) => {
-    console.log(avatar)
     const requires = {
       1: require('../../../assets/avatars/1.png'),
       2: require('../../../assets/avatars/2.png'),
@@ -21,7 +19,7 @@ const Select = () => {
   }
 
   const LeftIcon = (avatar) => (
-    <Image source={handleAvatar(avatar)} style={{width: 8, height: 8}} />
+    <Image source={handleAvatar(avatar)} style={{ width: 8, height: 8 }} />
   )
 
   return (
@@ -33,7 +31,11 @@ const Select = () => {
         onSelect={(index) => setSelectedIndex(index)}
       >
         {DATAAVATAR.map((item, i) => (
-          <SelectItem key={i} title={`Avatar ${item.key}`} accessoryLeft={LeftIcon(item.key)} />
+          <SelectItem
+            key={i}
+            title={`Avatar ${item.key}`}
+            accessoryLeft={LeftIcon(item.key)}
+          />
         ))}
       </SelectUi>
     </Layout>

@@ -6,10 +6,10 @@ import tailwind from 'twrnc'
 import { selectBarberChosen } from '../../../../app/features/barberSlice'
 import { GetScheduleUser } from '../../../../services/User'
 import Avatar from '../../../components/Avatar'
+import { Colors } from '../../../utils/Colors'
+import FooterComponent from './components/FooterComponent'
 import ListHeader from './components/ListHeader'
 import SelectSchedule from './components/SelectSchedule'
-import FooterComponent from './components/FooterComponent'
-import { Colors } from '../../../utils/Colors'
 
 const Schedule = () => {
   const barberChosen = useSelector(selectBarberChosen)
@@ -38,7 +38,7 @@ const Schedule = () => {
 
         <FlatList
           style={styles.flatList}
-          data={schedule.hours}
+          data={schedule.reservation}
           ListEmptyComponent={() => (
             <View style={tailwind`self-center my-3`}>
               <Spinner status='warning' style={tailwind`ml-auto mr-auto`} />

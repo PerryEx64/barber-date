@@ -3,7 +3,7 @@ import React from 'react'
 
 const FooterComponent = ({ chooseHour }) => {
   const onSubmit = () => {
-    console.log(chooseHour)
+    //
   }
   return (
     <>

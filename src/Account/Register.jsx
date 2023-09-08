@@ -1,8 +1,7 @@
-import { useNavigation } from '@react-navigation/native'
-import { Input, Text } from '@ui-kitten/components'
+import { Input } from '@ui-kitten/components'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Alert, TouchableOpacity, View } from 'react-native'
+import { Alert, ScrollView, View } from 'react-native'
 import tailwind from 'twrnc'
 import useGetDataUser from '../../hooks/useGetDataUser'
 import { CreateUser } from '../../services/Account'
@@ -13,7 +12,6 @@ import Header from './components/Header'
 
 const Register = () => {
   const { getUser } = useGetDataUser()
-  const navigation = useNavigation()
   const { control, handleSubmit } = useForm({
     defaultValues: {
       name: '',
@@ -32,7 +30,7 @@ const Register = () => {
           getUser(res.data)
         }
       })
-      .catch(() => {
+      .catch((error) => {
         Alert.alert('Ah ocurrido un error')
       })
   }
@@ -41,8 +39,8 @@ const Register = () => {
     <KeyboardAvoidContainer>
       <View style={{ flex: 1, justifyContent: 'flex-start' }}>
         <CircleTop />
-        <View style={tailwind`px-5`}>
-          <Header />
+        <ScrollView style={tailwind`px-5`}>
+          <Header title={'Registro'} />
 
           <Controller
             name='name'
@@ -124,23 +122,7 @@ const Register = () => {
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}
           />
-
-          <View
-            style={tailwind`flex-row justify-center gap-2 mt-8 items-center`}
-          >
-            <Text category='p2' style={tailwind`text-center`}>
-              {'Eres un barbero?'}
-            </Text>
-
-            <TouchableOpacity
-              onPress={() => navigation.navigate('registerBarber')}
-            >
-              <Text category='s1' status='info' style={tailwind`text-center`}>
-                {'Registrate'}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        </ScrollView>
       </View>
     </KeyboardAvoidContainer>
   )

@@ -1,14 +1,14 @@
-import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
-import tailwind from 'twrnc'
-import { Text } from '@ui-kitten/components'
-import { Colors } from '../../../utils/Colors'
 import { useNavigation } from '@react-navigation/native'
+import { Text } from '@ui-kitten/components'
+import React from 'react'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useDispatch } from 'react-redux'
+import tailwind from 'twrnc'
 import { setBarberChosen } from '../../../../app/features/barberSlice'
 import Avatar from '../../../components/Avatar'
+import { Colors } from '../../../utils/Colors'
 
-const Barbers = ({ barber, price }) => {
+const Barbers = ({ barber }) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
@@ -20,7 +20,7 @@ const Barbers = ({ barber, price }) => {
   return (
     <View>
       <Avatar avatar={barber.avatar} size={'md'} />
-      <View style={[styles.container, {borderColor: Colors['bg-200']}]}>
+      <View style={[styles.container, { borderColor: Colors['bg-200'] }]}>
         <View style={tailwind`bg-[${Colors.primary}] rounded-md p-1`}>
           <Text
             category='label'
@@ -33,7 +33,7 @@ const Barbers = ({ barber, price }) => {
         <Text
           category='c2'
           style={tailwind`text-center`}
-        >{`Tarifa Q${price}.00`}</Text>
+        >{`Tarifa Q${barber.price}.00`}</Text>
         <TouchableOpacity
           style={tailwind`self-end`}
           onPress={() => handleSubmit()}

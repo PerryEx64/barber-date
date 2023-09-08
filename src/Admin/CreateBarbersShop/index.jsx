@@ -1,8 +1,11 @@
+import { uuidv4 } from '@firebase/util'
 import { Input, Text } from '@ui-kitten/components'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Alert, StyleSheet, View } from 'react-native'
-import { CreateBarbershop as ServiceCreateBarberShop } from '../../../services/BarberShop'
+import { StyleSheet, View } from 'react-native'
+import {
+  CreateUserBarbershop
+} from '../../../services/BarberShop'
 import ButtonSave from '../../Account/components/ButtonSave'
 import CircleTop from '../../Account/components/CircleTop'
 import ButtonBack from '../../components/ButtonBack'
@@ -11,20 +14,22 @@ import KeyboardAvoidContainer from '../../components/KeyboardAvoidContainer'
 const CreateBarbersShop = () => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      name: '',
-      lastname: '',
-      phone: '',
-      addreess: '',
-      email: '',
-      type: 'owner'
+      id: uuidv4(),
+      nameBarbershop: 'Espada Nueva',
+      addreess: 'barrios la esperanza, 20 avenida 14 calle',
+      phone: '30948390',
+      owner: 'Daniel Osorio',
+      email: 'danielosorio@gmail.com',
+      type: 'owner',
+      barbers: []
     }
   })
 
-  const onSubmit = (data) => {
-    ServiceCreateBarberShop(data).then((res) => {
-      Alert.alert('Barberia creada correctamente', `${res.data.key}`)
-    })
+
+  const onSubmit = (form) => {
+    CreateUserBarbershop(form)
   }
+
   return (
     <KeyboardAvoidContainer>
       <CircleTop />
@@ -38,16 +43,16 @@ const CreateBarbersShop = () => {
 
       <View style={{ marginHorizontal: 20 }}>
         <Controller
-          name='name'
+          name='nameBarbershop'
           control={control}
           rules={{
             required: true
           }}
           render={({ field: { onChange, value } }) => (
             <Input
-              label={'Dueño de Barberia'}
+              label={'Nombre de Barberia'}
               style={{ marginBottom: 10 }}
-              placeholder='nombres'
+              placeholder='barberia'
               value={value}
               onChangeText={onChange}
               size='medium'
@@ -56,35 +61,16 @@ const CreateBarbersShop = () => {
         />
 
         <Controller
-          name='lastname'
+          name='addreess'
           control={control}
           rules={{
             required: true
           }}
           render={({ field: { onChange, value } }) => (
             <Input
-              label={'Apellidos'}
+              label={'Direccion de Barberia'}
               style={{ marginBottom: 10 }}
-              placeholder='apellidos'
-              value={value}
-              onChangeText={onChange}
-              size='medium'
-            />
-          )}
-        />
-
-        <Controller
-          name='email'
-          control={control}
-          rules={{
-            required: true
-          }}
-          render={({ field: { onChange, value } }) => (
-            <Input
-              label={'Correo Electronico'}
-              style={{ marginBottom: 10 }}
-              placeholder='nombre'
-              keyboardType='email-address'
+              placeholder='direccion'
               value={value}
               onChangeText={onChange}
               size='medium'
@@ -112,16 +98,35 @@ const CreateBarbersShop = () => {
         />
 
         <Controller
-          name='addreess'
+          name='owner'
           control={control}
           rules={{
             required: true
           }}
           render={({ field: { onChange, value } }) => (
             <Input
-              label={'Direccion de Barberia'}
+              label={'Dueno'}
               style={{ marginBottom: 10 }}
-              placeholder='direccion'
+              placeholder='dueno'
+              value={value}
+              onChangeText={onChange}
+              size='medium'
+            />
+          )}
+        />
+
+        <Controller
+          name='email'
+          control={control}
+          rules={{
+            required: true
+          }}
+          render={({ field: { onChange, value } }) => (
+            <Input
+              label={'Correo Electronico'}
+              style={{ marginBottom: 10 }}
+              placeholder='correo'
+              keyboardType='email-address'
               value={value}
               onChangeText={onChange}
               size='medium'

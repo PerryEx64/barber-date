@@ -3,28 +3,39 @@ import React from 'react'
 import { Image, TouchableOpacity, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import tailwind from 'twrnc'
-import { setBarbershopChosen } from '../../../../app/features/barberSlice'
+import { setBarbershops } from '../../../../app/features/barbershopSlice'
+import { GetBarbers } from '../../../../services/BarberShop'
 
-const CardBarbershop = ({ barbershop }) => {
+const CardBarbershop = ({ barbershop, admin }) => {
   const dispatch = useDispatch()
+
   return (
     <TouchableOpacity
-    onPress={() => dispatch(setBarbershopChosen({
-      barbers: barbershop.barbers,
-      price: barbershop.price
-    }))}
+      onPress={() => {
+        if (admin == true) {
+          dispatch(setBarbershops(barbershop))
+        } else {
+          GetBarbers(dispatch, barbershop.id)
+        }
+      }}
       style={tailwind`flex-row justify-between p-3 items-center shadow bg-[#16196A] rounded-2xl my-1`}
     >
       <View />
       <View>
         <Text
           category='label'
-          style={tailwind`text-[16px] text-center text-white`}
+          style={[
+            tailwind`text-[16px] text-center text-white`,
+            { maxWidth: '90%' }
+          ]}
         >
-          {barbershop.name}
+          {barbershop.nameBarbershop}
         </Text>
-        <Text category='s1' style={tailwind`text-center text-white`}>
-          {barbershop.addresse}
+        <Text
+          category='s1'
+          style={{ maxWidth: '90%', textAlign: 'center', color: 'white' }}
+        >
+          {barbershop.addreess}
         </Text>
       </View>
 
