@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import { Input, Text } from '@ui-kitten/components'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -13,25 +14,23 @@ import ButtonSave from '../Account/components/ButtonSave'
 import CircleTop from '../Account/components/CircleTop'
 import ButtonBack from '../components/ButtonBack'
 import KeyboardAvoidContainer from '../components/KeyboardAvoidContainer'
+import { BarbersRegister } from '../utils/Init/owner.init'
 
 const Owner = () => {
   const user = useSelector(selectUser)
   const dispatch = useDispatch()
   const updated = useSelector(selectUpdateBarbers)
-  const { handleSubmit, control } = useForm({
-    defaultValues: {
-      name: '',
-      id: '',
-      avatar: 1,
-      status: true,
-      enabled: true
-    }
+  const navigation = useNavigation()
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: BarbersRegister
   })
 
   const onSubmit = (form) => {
     try {
       CreateBarbers(form, user.idBarbershop)
       dispatch(setUpdateBarbers(!updated))
+      reset(BarbersRegister)
+      navigation.goBack()
     } catch (error) {
       Alert.alert('Ah ocurrido un error')
     }

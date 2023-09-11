@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   barbershops: {
-    width: '80%',
+    width: '90%',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 15

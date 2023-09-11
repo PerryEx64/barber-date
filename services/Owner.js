@@ -3,6 +3,7 @@ import { doc, updateDoc, writeBatch } from 'firebase/firestore'
 import { Alert } from 'react-native'
 import { MessageAuth } from './BarberShop'
 import { auth, db } from './CloudConection'
+import Toast from 'react-native-root-toast'
 
 
 export const CreateBarbers = (form, idBarbershop) => {
@@ -36,7 +37,7 @@ export const CreateBarbers = (form, idBarbershop) => {
 
       batch.commit()
 
-      Alert.alert('Barbero creado', form.name)
+      Toast.show('Barberos Creado')
     })
     .catch((err) => {
       const errorCode = err.code

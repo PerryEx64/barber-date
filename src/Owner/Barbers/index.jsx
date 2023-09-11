@@ -21,7 +21,6 @@ const Barbers = () => {
   }
 
   React.useEffect(() => {
-    /* GetBarbershop(dispatch, user.idBarbershop) */
     GetBarbers(dispatch, user.idBarbershop)
   }, [updated])
 

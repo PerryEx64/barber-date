@@ -15,7 +15,8 @@ export const CreateUser = (data) => {
         CreateUserInCollection(data)
         resolve({ status: 'ok', data: userCredential })
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log('aqui', err)
         reject('error')
       })
   })

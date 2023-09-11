@@ -45,10 +45,6 @@ const Profile = () => {
             value={barbershop.addreess}
             multiline
           />
-          {/* <InputProfile
-            label={'Cantidad Barberos'}
-            value={String(barbershop.barbers.length)}
-          /> */}
         </Layout>
       </View>
 

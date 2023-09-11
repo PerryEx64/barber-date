@@ -33,7 +33,7 @@ const CardBarbershop = ({ barbershop, admin }) => {
         </Text>
         <Text
           category='s1'
-          style={{ maxWidth: '90%', textAlign: 'center', color: 'white' }}
+          style={{ maxWidth: '87%', textAlign: 'center', color: 'white' }}
         >
           {barbershop.addreess}
         </Text>

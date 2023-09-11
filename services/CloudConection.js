@@ -2,14 +2,15 @@ import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyAvgJHP_STgKlsMAn-qF_8V1b-5vC18tDo',
-  authDomain: 'barber-date.firebaseapp.com',
-  projectId: 'barber-date',
-  storageBucket: 'barber-date.appspot.com',
-  messagingSenderId: '55091372618',
-  appId: '1:55091372618:web:c931b3eaaf352f1a8bbcb3'
+export const firebaseConfig = {
+  apiKey: process.env.EXPO_PUBLIC_API_KEY,
+  authDomain: process.env.EXPO_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.EXPO_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.EXPO_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.EXPO_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.EXPO_PUBLIC_APP_ID
 }
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
@@ -19,4 +20,5 @@ const db = getFirestore(app)
 // Init create User
 const auth = getAuth(app)
 
-export { db, auth }
+export { auth, db }
+

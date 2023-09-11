@@ -61,13 +61,6 @@ const Barber = () => {
             }`}
             horizontal={true}
             keyExtractor={(item) => item.id}
-            ListEmptyComponent={() => (
-              <View>
-                <Text status='danger' category='label'>
-                  {'Selecciona una barberia'}
-                </Text>
-              </View>
-            )}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => <Barbers barber={item} />}
           />

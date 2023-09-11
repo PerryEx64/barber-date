@@ -6,15 +6,11 @@ import { Dimensions, Image, View } from 'react-native'
 import Toast from 'react-native-root-toast'
 import tailwind from 'twrnc'
 import useGetDataUser from '../../hooks/useGetDataUser'
-import { auth, signInWithGoogle } from '../../services/CloudConection'
+import { auth } from '../../services/CloudConection'
 import KeyBoardAvoidContainer from '../components/KeyboardAvoidContainer'
 import { MessageAuth } from '../utils/MessageAuth'
 import CircleTop from './components/CircleTop'
 import FooterLogin from './components/FooterLogin'
-
-const GoogleIcon = (props) => (
-  <Image source={require('../../assets/buttons/google-icon.png')} {...props} />
-)
 
 const Login = () => {
   const [loading, setLoading] = React.useState(false)
@@ -40,23 +36,6 @@ const Login = () => {
       .catch((error) => {
         setTimeout(() => {
           Toast.show(`${MessageAuth(error.code)}`)
-          setLoading(false)
-        }, 2000)
-      })
-  }
-
-  const onGoogleSubmit = () => {
-    setLoading(true)
-    signInWithGoogle(auth)
-      .then((userCredential) => {
-        getUser(userCredential)
-
-        setTimeout(() => {
-          setLoading(false)
-        }, 1000)
-      })
-      .catch(() => {
-        setTimeout(() => {
           setLoading(false)
         }, 2000)
       })
@@ -128,17 +107,6 @@ const Login = () => {
                 style={tailwind`mt-4 rounded-lg`}
               >
                 Iniciar Sesión
-              </Button>
-              <Button
-                disabled={loading}
-                onPress={onGoogleSubmit}
-                style={[
-                  tailwind`mt-4 rounded-lg`,
-                  { backgroundColor: '#4285F4', borderColor: '#4285F4' }
-                ]}
-                accessoryLeft={GoogleIcon}
-              >
-                <Text style={{ color: 'white' }}>Iniciar con Google</Text>
               </Button>
             </View>
           )}
