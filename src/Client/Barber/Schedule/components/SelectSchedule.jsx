@@ -8,14 +8,14 @@ const SelectSchedule = ({ item, index, choose, setChoose, setChooseHour }) => {
     <View style={styles.contentList}>
       <Text category='s1' >{item.hour}</Text>
       <Radio
-        disabled={item.status}
+        disabled={!item.status}
         checked={choose == index ? true : false}
         onChange={() => {
           setChoose(index)
           setChooseHour(item.hour)
         }}
       >
-        {item.status == true ? 'reservada' : 'disponible'}
+        {item.status == true ? 'disponible' : 'reservada'}
       </Radio>
     </View>
   )

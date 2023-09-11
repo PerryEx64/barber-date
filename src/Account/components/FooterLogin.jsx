@@ -1,45 +1,50 @@
-import { View, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { Text } from '@ui-kitten/components'
 import React from 'react'
+import { TouchableOpacity, View } from 'react-native'
 import tailwind from 'twrnc'
-import { useNavigation } from '@react-navigation/native'
 
 const FooterLogin = () => {
-    const navigation = useNavigation()
+  const navigation = useNavigation()
+
+  const handleReset = () => {
+    navigation.navigate('resetPassword')
+  }
+
+  const handleRegister = () => {
+    navigation.navigate('register')
+  }
+
   return (
-    <View style={tailwind`gap-1.5 m-5`}>
-      <TouchableOpacity>
+    <View style={tailwind`gap-3 m-5`}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
         <Text category='p2' style={tailwind`text-center`}>
           {'¿Se te olvido la contraseña?'}
         </Text>
-      </TouchableOpacity>
+        <TouchableOpacity onPress={handleReset}>
+          <Text category='s1' status='info' style={tailwind`text-center`}>
+            {'recuperar'}
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       <View style={tailwind`flex-row justify-center gap-1 items-center`}>
         <Text category='p2' style={tailwind`text-center`}>
           {'¿No tienes una cuenta?'}
         </Text>
 
-        <TouchableOpacity 
-        onPress={() => navigation.navigate('register')}>
+        <TouchableOpacity onPress={handleRegister}>
           <Text category='s1' status='info' style={tailwind`text-center`}>
             {'registrate'}
           </Text>
         </TouchableOpacity>
       </View>
-
-      <View style={tailwind`flex-row justify-center gap-1 items-center`}>
-          <Text category='p2' style={tailwind`text-center`}>
-            {'¿Eres un barbero?'}
-          </Text>
-
-          <TouchableOpacity
-            onPress={() => navigation.navigate('registerBarber')}
-          >
-            <Text category='s1' status='info' style={tailwind`text-center`}>
-              {'registrate'}
-            </Text>
-          </TouchableOpacity>
-        </View>
     </View>
   )
 }

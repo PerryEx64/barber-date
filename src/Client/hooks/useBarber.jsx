@@ -1,14 +1,14 @@
 import React from 'react'
-import { DATABARBERS } from '../../utils/ConstantsBarber'
+import { GetBarbershops } from '../../../services/BarberShop'
 
 function useBarber() {
-    const [barberShops, setBarberShops] = React.useState(DATABARBERS)
+  const [barberShops, setBarberShops] = React.useState([])
 
-   React.useEffect(() => {
+  React.useEffect(() => {
     //obtiene la data de todas las barberias disponibles
-   
-   }, []) 
-  return {barberShops}
+    GetBarbershops(setBarberShops)
+  }, [])
+  return { barberShops }
 }
 
 export default useBarber

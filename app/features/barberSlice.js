@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export const initialState = {
+  barbers: [],
   barbershopChosen: {
     price: 0,
     barbers: []
@@ -12,6 +13,9 @@ export const barberSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setBarbers: (state, action) => {
+      state.barbers = action.payload
+    },
     setBarbershopChosen: (state, action) => {
       state.barbershopChosen = action.payload
     },
@@ -22,8 +26,10 @@ export const barberSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setBarbershopChosen, setBarberChosen } = barberSlice.actions
+export const { setBarbershopChosen, setBarberChosen, setBarbers } =
+  barberSlice.actions
 export const selectBarbershopChosen = (state) => state.barber.barbershopChosen
 export const selectBarberChosen = (state) => state.barber.barberChosen
+export const selectBarbers = (state) => state.barber.barbers
 
 export default barberSlice.reducer

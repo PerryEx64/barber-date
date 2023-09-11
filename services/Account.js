@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, signOut } from 'firebase/auth'
+import { doc, runTransaction, setDoc } from 'firebase/firestore'
+import { Alert } from 'react-native'
 import { auth, db } from './CloudConection'
-import { doc, setDoc } from 'firebase/firestore'
-import { Alert} from 'react-native'
 
 /**
  *
@@ -12,15 +12,12 @@ export const CreateUser = (data) => {
   return new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
-
         CreateUserInCollection(data)
         resolve({ status: 'ok', data: userCredential })
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log('aqui', err)
         reject('error')
-        /*   const errorCode = error.code
-        const errorMessage = error.message */
-        // ..
       })
   })
 }
@@ -30,14 +27,51 @@ export const CreateUserInCollection = async (data) => {
 }
 
 /**
- * 
+ *
  */
 export const onSignOut = () => {
- return new Promise((resolve) => {
-  signOut(auth).then(() => {
-    resolve('ok')
-  }).catch(() => {
-    Alert.alert('Ah ocurrido un error')
-  });
- })
+  return new Promise((resolve) => {
+    signOut(auth)
+      .then(() => {
+        resolve('ok')
+      })
+      .catch(() => {
+        Alert.alert('Ah ocurrido un error')
+      })
+  })
+}
+
+export const CreateBarberShops = async ({ searchEmail, data }) => {
+  const sfDocRef = doc(db, 'users', searchEmail)
+
+  try {
+    //Busca si el usuario existe o no existe
+    const barbershops = await runTransaction(db, async (transaction) => {
+      const sfDoc = await transaction.get(sfDocRef)
+
+      /**
+       * Si el usuario no existe
+       */
+      if (!sfDoc.exists()) {
+        //crea el usuario
+        createUserWithEmailAndPassword(auth, data.email, password).then(
+          (userCredential) => {
+            //Crea la barberia luego de crear el usuario
+            const barbershoRef = doc(db, 'barbershops', 'NYC')
+            transaction.set(barbershoRef, data)
+
+            return Promise.resolve({
+              status: 'ok',
+              data: userCredential,
+              key: password
+            })
+          }
+        )
+      }
+
+      return 'exists'
+    })
+  } catch (error) {
+    return Promise.reject('error')
+  }
 }

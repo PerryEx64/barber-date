@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 
-const Header = () => {
+const Header = ({title}) => {
   const navigation = useNavigation()
   const BackIcon = () => (
     <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -13,7 +13,7 @@ const Header = () => {
   )
 
   const BackAction = () => <TopNavigationAction icon={BackIcon} />
-  const Title = () => <Text category='h5'>{'Registro'}</Text>
+  const Title = () => <Text category='h6'>{title}</Text>
 
   return (
     <>
