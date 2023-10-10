@@ -5,6 +5,7 @@ import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import tailwind from 'twrnc'
 import { setBarberChosen } from '../../../../app/features/barberSlice'
+import { setBarberService } from '../../../../app/features/serviceSlice'
 import Avatar from '../../../components/Avatar'
 import { Colors } from '../../../utils/Colors'
 
@@ -14,6 +15,15 @@ const Barbers = ({ barber }) => {
 
   const handleSubmit = () => {
     dispatch(setBarberChosen(barber))
+    dispatch(
+      setBarberService({
+        price: barber.price,
+        data: {
+          id: barber.id,
+          name: barber.name
+        }
+      })
+    )
     navigation.navigate('schedule')
   }
 

@@ -1,9 +1,9 @@
 import { Fontisto, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
-import MyDates from '../src/Client/MyDates'
 import Profile from '../src/Client/Profile'
 import StackClientBarberClient from './StackClientBarberClient'
+import StackClientDates from './Stacks/StackClientDates'
 
 const StackClient = () => {
   const Tab = createBottomTabNavigator()
@@ -13,7 +13,7 @@ const StackClient = () => {
         name='stackBarberClient'
         component={StackClientBarberClient}
         options={{
-          title: 'Citas',
+          title: 'Agendar',
           headerShown: false,
           tabBarIcon: ({ size, color }) => (
             <Fontisto name='date' size={size} color={color} />
@@ -21,10 +21,11 @@ const StackClient = () => {
         }}
       />
       <Tab.Screen
-        name='mydates'
-        component={MyDates}
+        name='stackDates'
+        component={StackClientDates}
         options={{
           title: 'Mis Citas',
+          headerShown: false,
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons
               name='clipboard-list-outline'

@@ -18,7 +18,7 @@ const Login = () => {
   const widthScreen = Dimensions.get('window')
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      usuario: 'test@test.com',
+      usuario: 'ventilador@gmail.com',
       password: '12345678'
     }
   })
@@ -32,6 +32,7 @@ const Login = () => {
         setTimeout(() => {
           setLoading(false)
         }, 1000)
+        Toast.show('Bienvenido')
       })
       .catch((error) => {
         setTimeout(() => {

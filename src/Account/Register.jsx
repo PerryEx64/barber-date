@@ -2,6 +2,7 @@ import { Input } from '@ui-kitten/components'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Alert, ScrollView, View } from 'react-native'
+import Toast from 'react-native-root-toast'
 import tailwind from 'twrnc'
 import useGetDataUser from '../../hooks/useGetDataUser'
 import { CreateUser } from '../../services/Account'
@@ -26,11 +27,12 @@ const Register = () => {
     CreateUser(data)
       .then((res) => {
         if (res.status == 'ok') {
+          Toast.show('usuario creado')
           Alert.alert('Bienvenido')
           getUser(res.data)
         }
       })
-      .catch((error) => {
+      .catch(() => {
         Alert.alert('Ah ocurrido un error')
       })
   }

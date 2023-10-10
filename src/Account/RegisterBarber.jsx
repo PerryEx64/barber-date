@@ -12,6 +12,7 @@ import useGetDataUser from '../../hooks/useGetDataUser'
 import { useSelector } from 'react-redux'
 import { selectAvatarChosen } from '../../app/features/accountSlice'
 import Header from './components/Header'
+import Toast from 'react-native-root-toast'
 
 const RegisterBarber = () => {
   const navigation = useNavigation()
@@ -41,6 +42,7 @@ const RegisterBarber = () => {
 
     CreateUser(result)
       .then((res) => {
+        Toast.show('Usuario creado')
         Alert.alert('Bienvenido')
         getUser(res.data)
       })

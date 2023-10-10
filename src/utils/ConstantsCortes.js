@@ -1,23 +1,22 @@
-
 export const DATACORTES = [
-    {
-        id: 1,
-        nombre: 'militar',
-        img: require('../../assets/cortes/militar.png')
-    },
-    {
-        id: 2,
-        nombre: 'clasico',
-        img: require('../../assets/cortes/clasico.png')
-    },
-    {
-        id: 3,
-        nombre: 'militar',
-        img: require('../../assets/cortes/militar.png')
-    },
-    {
-        id: 4,
-        nombre: 'clasico',
-        img: require('../../assets/cortes/clasico.png')
-    }
+  {
+    id: 1,
+    nombre: 'militar',
+    img: 1
+  },
+  {
+    id: 2,
+    nombre: 'quiff',
+    img: 2
+  },
+  {
+    id: 3,
+    nombre: 'clasico',
+    img: 3
+  },
+  {
+    id: 4,
+    nombre: 'pompadour',
+    img: 4
+  }
 ]
