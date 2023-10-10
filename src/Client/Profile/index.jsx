@@ -12,6 +12,7 @@ import {
 } from '../../../app/features/userSlice'
 import { onSignOut } from '../../../services/Account'
 import InputProfile from '../../components/InputProfile'
+import Toast from 'react-native-root-toast'
 
 const Profile = () => {
   const user = useSelector(selectUser)
@@ -22,6 +23,7 @@ const Profile = () => {
     onSignOut().then((res) => {
       if (res == 'ok') {
         dispatch(setUser(initialState.user))
+        Toast.show('Sesion Terminada')
         navigation.navigate('login')
       }
     })

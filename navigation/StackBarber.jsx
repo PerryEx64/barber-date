@@ -2,8 +2,8 @@ import { AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import Profile from '../src/Barber/Profile'
-import Reservations from '../src/Barber/Reservations'
 import Schedule from '../src/Barber/Schedule'
+import StackBarberReservation from './Stacks/StackBarberReservation'
 
 const StackBarber = () => {
   const Tab = createBottomTabNavigator()
@@ -11,10 +11,11 @@ const StackBarber = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name='reservations'
-        component={Reservations}
+        name='stackReservation'
+        component={StackBarberReservation}
         options={{
           title: 'Reservaciones',
+          headerShown: false,
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons
               name='playlist-check'
