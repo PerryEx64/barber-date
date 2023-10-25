@@ -63,7 +63,16 @@ const Extras = () => {
       >
         {'Elegir'}
       </Button>
-      <Text>{calculatePrice()}</Text>
+
+      <View style={styles.alternativeContainer}>
+        <Text
+          category='s1'
+          style={{ textAlign: 'center' }}
+          appearance='alternative'
+        >
+          Q{calculatePrice()}.00
+        </Text>
+      </View>
     </Layout>
   )
 }
@@ -94,5 +103,13 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 30
+  },
+  alternativeContainer: {
+    borderRadius: 4,
+    backgroundColor: '#DA2A3D',
+    opacity: 0.8,
+    padding: 8,
+    alignSelf: 'center',
+    marginTop: 20
   }
 })

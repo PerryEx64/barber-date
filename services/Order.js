@@ -3,7 +3,8 @@ import {
   doc,
   getDoc,
   onSnapshot,
-  runTransaction
+  runTransaction,
+  writeBatch
 } from 'firebase/firestore'
 import { db } from './CloudConection'
 
@@ -93,6 +94,7 @@ export const CreateOrder = async (order, user) => {
       const barberOrder = {
         id: order.id,
         client: user.name,
+        email: user.email,
         phone: user.phone,
         schedule: order.shedule
       }
@@ -106,6 +108,24 @@ export const CreateOrder = async (order, user) => {
       )
       transaction.set(saveOrderBarberRef, barberOrder)
     })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const DeleteOrdersFinishes = (client, barberEmail) => {
+  try {
+    const batch = writeBatch(db)
+
+    //Ref delete order client
+    const clientRef = doc(db, 'users', client.email, 'orders', client.id)
+    batch.delete(clientRef)
+
+    //Ref delete order barber
+    const barberRef = doc(db, 'users', barberEmail, 'orders', client.id)
+    batch.delete(barberRef)
+
+     return batch.commit()
   } catch (error) {
     console.log(error)
   }

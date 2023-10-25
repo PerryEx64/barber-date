@@ -3,30 +3,53 @@ import { useNavigation } from '@react-navigation/native'
 import { Button, Text } from '@ui-kitten/components'
 import React from 'react'
 import { Alert, StyleSheet, View } from 'react-native'
-import { useSelector } from 'react-redux'
+import Toast from 'react-native-root-toast'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectService } from '../../../../app/features/serviceSlice'
+import {
+  selectMaxService,
+  setMaxService,
+  setTime
+} from '../../../../app/features/timeSlice'
 import { selectUser } from '../../../../app/features/userSlice'
 import usePrice from '../../../../hooks/usePrice'
 import { CreateOrder } from '../../../../services/Order'
 import ResumenView from '../../../components/ResumenView'
 import Title from './components/Title'
-import Toast from 'react-native-root-toast'
 
 const Resumen = () => {
   const service = useSelector(selectService)
   const user = useSelector(selectUser)
+  const dispatch = useDispatch()
   const navigation = useNavigation()
   const { calculatePrice } = usePrice()
+  const maxService = useSelector(selectMaxService)
+  const [disabled, setDisabled] = React.useState(false)
 
   const handleNavigation = () => {
     const order = { ...service, id: uuidv4(), created_at: new Date() }
-
+    setDisabled(true)
     //Guarda id del servicio en la coleccion de services
-    CreateOrder(order, user).then(() => {
-      Alert.alert('Orden Creada', `orden no. ${order.id.split('-')[0]}`)
-      Toast.show('Orden Creada')
-      navigation.navigate('stackDates')
-    })
+    if (maxService == 2) {
+      Alert.alert('Debes de esperar 5min para poder hacer un nuevo pedido')
+      setTimeout(() => {
+        dispatch(setMaxService())
+      }, 5000)
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'stackDates' }]
+      })
+    } else {
+      CreateOrder(order, user).then(() => {
+        Alert.alert('Orden Creada', `orden no. ${order.id.split('-')[0]}`)
+        Toast.show('Orden Creada')
+        dispatch(setTime())
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'stackDates' }]
+        })
+      })
+    }
   }
   return (
     <ResumenView title={'Resumen de Pago'}>
@@ -74,11 +97,12 @@ const Resumen = () => {
 
         <Button
           onPress={handleNavigation}
+          disabled={disabled}
           style={styles.btn}
           size='small'
           appearance='outline'
         >
-          {'Confirmar Cita'}
+          {'Confirmar cita'}
         </Button>
       </>
     </ResumenView>

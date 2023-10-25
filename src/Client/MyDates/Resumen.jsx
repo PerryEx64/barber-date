@@ -1,15 +1,41 @@
+import { useNavigation } from '@react-navigation/native'
+import { Button, Text } from '@ui-kitten/components'
 import React from 'react'
-import ResumenView from '../../components/ResumenView'
 import { StyleSheet, View } from 'react-native'
-import { Text } from '@ui-kitten/components'
-import Title from '../Barber/Resumen/components/Title'
+import Toast from 'react-native-root-toast'
 import { useSelector } from 'react-redux'
+import { selectBarberClient } from '../../../app/features/barberSlice'
 import { selectService } from '../../../app/features/serviceSlice'
 import usePrice from '../../../hooks/usePrice'
+import { DeleteOrdersFinishes } from '../../../services/Order'
+import ResumenView from '../../components/ResumenView'
+import Title from '../Barber/Resumen/components/Title'
+import { selectUser } from '../../../app/features/userSlice'
 
 const Resumen = () => {
   const service = useSelector(selectService)
+  const client = useSelector(selectBarberClient)
+  const user = useSelector(selectUser)
+  const navigation = useNavigation()
   const { calculatePrice } = usePrice()
+
+  console.log(client)
+  const handleDeleteOrder = () => {
+
+    const dataClient = {
+      email: user.email,
+      id: client.id
+    }
+    try {
+      DeleteOrdersFinishes(dataClient, service.barber.id).then(() => {
+        navigation.goBack()
+        Toast.show('Servicio Cancelado')
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <ResumenView title={'Cita Barbero'}>
       <>
@@ -54,9 +80,14 @@ const Resumen = () => {
           <></>
         )}
 
-       {/*  <Text category='s1' style={styles.contentSubTitle}>
-          {service.created_at} ceja
-        </Text> */}
+        <Button
+          status='danger'
+          size='small'
+          onPress={() => handleDeleteOrder()}
+          style={{ marginTop: 20, alignSelf: 'center' }}
+        >
+          {'Cancelar'}
+        </Button>
       </>
     </ResumenView>
   )

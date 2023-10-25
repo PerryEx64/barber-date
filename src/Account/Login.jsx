@@ -2,7 +2,7 @@ import { Button, Input, Spinner, Text } from '@ui-kitten/components/ui'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Dimensions, Image, View } from 'react-native'
+import { Dimensions, Image, TouchableWithoutFeedback, View } from 'react-native'
 import Toast from 'react-native-root-toast'
 import tailwind from 'twrnc'
 import useGetDataUser from '../../hooks/useGetDataUser'
@@ -11,10 +11,12 @@ import KeyBoardAvoidContainer from '../components/KeyboardAvoidContainer'
 import { MessageAuth } from '../utils/MessageAuth'
 import CircleTop from './components/CircleTop'
 import FooterLogin from './components/FooterLogin'
+import { Ionicons } from '@expo/vector-icons'
 
 const Login = () => {
   const [loading, setLoading] = React.useState(false)
   const { getUser } = useGetDataUser()
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true)
   const widthScreen = Dimensions.get('window')
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -41,6 +43,20 @@ const Login = () => {
         }, 2000)
       })
   }
+
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry)
+  }
+
+  const renderIcon = () => (
+    <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+      {secureTextEntry ? (
+        <Ionicons name='eye-off' size={24} color='black' />
+      ) : (
+        <Ionicons name='eye' size={24} color='black' />
+      )}
+    </TouchableWithoutFeedback>
+  )
 
   return (
     <KeyBoardAvoidContainer>
@@ -89,7 +105,8 @@ const Login = () => {
                 placeholder='contraseña'
                 value={value}
                 onChangeText={onChange}
-                secureTextEntry={true}
+                accessoryRight={renderIcon}
+                secureTextEntry={secureTextEntry}
                 size='medium'
               />
             )}

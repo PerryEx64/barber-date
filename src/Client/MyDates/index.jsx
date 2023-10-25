@@ -1,27 +1,33 @@
 import { useNavigation } from '@react-navigation/native'
-import { Layout, Text } from '@ui-kitten/components'
+import { Button, Layout, Text } from '@ui-kitten/components'
 import React from 'react'
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { setService } from '../../../app/features/serviceSlice'
 import { selectUser } from '../../../app/features/userSlice'
 import { GetOrder, GetOrders } from '../../../services/Order'
+import { setBarberServiceClient } from '../../../app/features/barberSlice'
+import { selectMaxService } from '../../../app/features/timeSlice'
 
 const MyDates = () => {
   const user = useSelector(selectUser)
   const [dates, setDates] = React.useState('')
   const dispatch = useDispatch()
   const navigation = useNavigation()
+  const maxService = useSelector(selectMaxService)
 
   React.useEffect(() => {
     GetOrders(user.email, setDates)
   }, [])
 
-  const handleNavigation = (id) => {
-    GetOrder(id).then((res) => {
+  console.log(maxService)
+
+  const handleNavigation = (item) => {
+    GetOrder(item.id).then((res) => {
       // eslint-disable-next-line no-unused-vars
       const { created_at, id, ...orderBy } = res
       dispatch(setService(orderBy))
+      dispatch(setBarberServiceClient(item))
       navigation.navigate('resumenDates')
     })
   }
@@ -32,10 +38,24 @@ const MyDates = () => {
         data={dates}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.contentFlat}
+        ListEmptyComponent={() => (
+          <View>
+            <Text status='warning' category='h6'>
+              {'No tienes ninguna cita hecha!'}
+            </Text>
+            <Button
+              size='small'
+              style={{ marginTop: 10 }}
+              onPress={() => navigation.navigate('barberClient')}
+            >
+              {'Hacer Cita!!!!'}
+            </Button>
+          </View>
+        )}
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.content}
-            onPress={() => handleNavigation(item.id)}
+            onPress={() => handleNavigation(item)}
           >
             <Text category='h6' status='danger' style={{ textAlign: 'center' }}>
               {item.barber}

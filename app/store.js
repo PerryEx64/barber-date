@@ -5,6 +5,7 @@ import accountSlice from './features/accountSlice'
 import barbershopSlice from './features/barbershopSlice'
 import updatedSlice from './features/updateSlice'
 import serviceSlice from './features/serviceSlice'
+import timeSlice from './features/timeSlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     barber: barberSlice,
     barbershops: barbershopSlice,
     update: updatedSlice,
-    service: serviceSlice
+    service: serviceSlice,
+    time: timeSlice
   }
 })
