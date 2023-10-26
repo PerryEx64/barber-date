@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setService } from '../../../app/features/serviceSlice'
 import { selectUser } from '../../../app/features/userSlice'
 import { GetOrder, GetOrders } from '../../../services/Order'
+import { setBarberServiceClient } from '../../../app/features/barberSlice'
 
 const Reservations = () => {
   const [dates, setDates] = React.useState('')
@@ -17,16 +18,17 @@ const Reservations = () => {
     GetOrders(user.email, setDates)
   }, [])
 
-
-  const handleNavigation = (id) => {
+  const handleNavigation = (item) => {
     // eslint-disable-next-line no-unused-vars
-    GetOrder(id).then((res) => {
+    GetOrder(item.id).then((res) => {
       // eslint-disable-next-line no-unused-vars
       const { created_at, id, ...order } = res
       dispatch(setService(order))
+      dispatch(setBarberServiceClient(item))
       navigation.navigate('resumenReservationes')
     })
   }
+
   return (
     <Layout level='1' style={{ flex: 1 }}>
       <FlatList
@@ -39,10 +41,17 @@ const Reservations = () => {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.content}
-            onPress={() => handleNavigation(item.id)}
+            onPress={() => handleNavigation(item)}
           >
             <Text category='h6' status='danger' style={{ textAlign: 'center' }}>
               {item.client}
+            </Text>
+            <Text
+              category='label'
+              status='warning'
+              style={{ textAlign: 'center' }}
+            >
+              #ref: {item.id.split('-')[0]}
             </Text>
             <Text
               style={{

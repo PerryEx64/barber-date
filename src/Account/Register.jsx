@@ -1,7 +1,7 @@
-import { Input } from '@ui-kitten/components'
+import { Input, Text } from '@ui-kitten/components'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Alert, ScrollView, View } from 'react-native'
+import { Alert, ScrollView, TouchableWithoutFeedback, View } from 'react-native'
 import Toast from 'react-native-root-toast'
 import tailwind from 'twrnc'
 import useGetDataUser from '../../hooks/useGetDataUser'
@@ -10,10 +10,17 @@ import KeyboardAvoidContainer from '../components/KeyboardAvoidContainer'
 import ButtonSave from './components/ButtonSave'
 import CircleTop from './components/CircleTop'
 import Header from './components/Header'
+import { RulePassword } from '../utils/Rules'
+import { Ionicons } from '@expo/vector-icons'
 
 const Register = () => {
   const { getUser } = useGetDataUser()
-  const { control, handleSubmit } = useForm({
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true)
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
     defaultValues: {
       name: '',
       email: '',
@@ -36,6 +43,20 @@ const Register = () => {
         Alert.alert('Ah ocurrido un error')
       })
   }
+
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry)
+  }
+
+  const renderIcon = () => (
+    <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+      {secureTextEntry ? (
+        <Ionicons name='eye-off' size={24} color='black' />
+      ) : (
+        <Ionicons name='eye' size={24} color='black' />
+      )}
+    </TouchableWithoutFeedback>
+  )
 
   return (
     <KeyboardAvoidContainer>
@@ -103,21 +124,25 @@ const Register = () => {
           <Controller
             name='password'
             control={control}
-            rules={{
-              required: true
-            }}
+            rules={RulePassword}
             render={({ field: { onChange, value } }) => (
               <Input
                 label={'Contrase;a'}
                 style={{ marginBottom: 10 }}
                 placeholder='nombre'
-                secureTextEntry={true}
+                secureTextEntry={secureTextEntry}
+                accessoryRight={renderIcon}
                 value={value}
                 onChangeText={onChange}
                 size='medium'
               />
             )}
           />
+          {errors.password && (
+            <Text status='danger' category='label'>
+              {errors.password.message}
+            </Text>
+          )}
 
           <ButtonSave
             title='Registrarse'
