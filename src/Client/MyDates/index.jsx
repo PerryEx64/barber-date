@@ -3,11 +3,11 @@ import { Button, Layout, Text } from '@ui-kitten/components'
 import React from 'react'
 import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
+import { setBarberServiceClient } from '../../../app/features/barberSlice'
 import { setService } from '../../../app/features/serviceSlice'
+import { selectMaxService } from '../../../app/features/timeSlice'
 import { selectUser } from '../../../app/features/userSlice'
 import { GetOrder, GetOrders } from '../../../services/Order'
-import { setBarberServiceClient } from '../../../app/features/barberSlice'
-import { selectMaxService } from '../../../app/features/timeSlice'
 
 const MyDates = () => {
   const user = useSelector(selectUser)
@@ -24,7 +24,6 @@ const MyDates = () => {
 
   const handleNavigation = (item) => {
     GetOrder(item.id).then((res) => {
-      // eslint-disable-next-line no-unused-vars
       const { created_at, id, ...orderBy } = res
       dispatch(setService(orderBy))
       dispatch(setBarberServiceClient(item))

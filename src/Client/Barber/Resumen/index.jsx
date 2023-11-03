@@ -29,7 +29,6 @@ const Resumen = () => {
   const handleNavigation = () => {
     const order = { ...service, id: uuidv4(), created_at: new Date() }
     setDisabled(true)
-    //Guarda id del servicio en la coleccion de services
     if (maxService == 2) {
       Alert.alert('Debes de esperar 5min para poder hacer un nuevo pedido')
       setTimeout(() => {

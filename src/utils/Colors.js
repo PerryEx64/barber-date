@@ -1,5 +1,4 @@
 export const Colors = {
-  //Backgraound
   bg: '#16196A',
   'bg-200': '#2d287c',
   'bg-300': '#4c4099',

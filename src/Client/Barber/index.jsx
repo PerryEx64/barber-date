@@ -20,10 +20,8 @@ const Barber = () => {
   const barbersLenght = barbers.length
 
   const handleEnabledBarbers = () => {
-    // Filtramos primero todos los barberos que el propietario ah autorizado
     const barbersEnabled = barbers.filter((data) => data.enabled == true)
 
-    // Filtramos los barberos que ya ah marcado que estan listo para empezar el dia
     const result = barbersEnabled.filter((data) => data.status == true)
 
     return result
