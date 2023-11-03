@@ -14,7 +14,6 @@ export const updatedSlice = createSlice({
   }
 })
 
-// Action creators are generated for each case reducer function
 export const { setUpdateBarbers } = updatedSlice.actions
 export const selectUpdateBarbers = (state) => state.update.updateBarbers
 

@@ -44,18 +44,14 @@ export const CreateBarberShops = async ({ searchEmail, data }) => {
   const sfDocRef = doc(db, 'users', searchEmail)
 
   try {
-    //Busca si el usuario existe o no existe
-    const barbershops = await runTransaction(db, async (transaction) => {
+    await runTransaction(db, async (transaction) => {
       const sfDoc = await transaction.get(sfDocRef)
 
-      /**
-       * Si el usuario no existe
-       */
       if (!sfDoc.exists()) {
-        //crea el usuario
+ 
         createUserWithEmailAndPassword(auth, data.email, password).then(
           (userCredential) => {
-            //Crea la barberia luego de crear el usuario
+  
             const barbershoRef = doc(db, 'barbershops', 'NYC')
             transaction.set(barbershoRef, data)
 

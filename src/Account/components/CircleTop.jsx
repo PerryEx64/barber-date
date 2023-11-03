@@ -7,7 +7,6 @@ const CircleTop = () => {
   return (
     <View style={tailwind`items-end w-full`}>
       <Image
-        // eslint-disable-next-line no-undef
         source={require('../../../assets/circulo-login.png')}
         style={tailwind`${widthScreen.width > 800 ? 'w-86 h-86' : 'h-52 w-52'}`}
       />

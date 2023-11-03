@@ -1,19 +1,26 @@
 {
-    "build": {
-      "preview": {
-        "android": {
-          "buildType": "apk"
-        }
+  "build": {
+    "preview": {
+      "env": {
+        "EXPO_PUBLIC_API_KEY": "AIzaSyAvgJHP_STgKlsMAn-qF_8V1b-5vC18tDo",
+        "EXPO_PUBLIC_AUTH_DOMAIN": "barber-date.firebaseapp.com",
+        "EXPO_PUBLIC_PROJECT_ID": "barber-date",
+        "EXPO_PUBLIC_STORAGE_BUCKET": "barber-date.appspot.com",
+        "EXPO_PUBLIC_MESSAGING_SENDER_ID": "55091372618",
+        "EXPO_PUBLIC_APP_ID": "1:55091372618:web:c931b3eaaf352f1a8bbcb3"
       },
-      "preview2": {
-        "android": {
-          "gradleCommand": ":app:assembleRelease"
-        }
-      },
-      "preview3": {
-        "developmentClient": true
-      },
-      "production": {}
-    }
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "production": {}
   }
-  
+}

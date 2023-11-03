@@ -19,9 +19,9 @@ const Reservations = () => {
   }, [])
 
   const handleNavigation = (item) => {
-    // eslint-disable-next-line no-unused-vars
+   
     GetOrder(item.id).then((res) => {
-      // eslint-disable-next-line no-unused-vars
+
       const { created_at, id, ...order } = res
       dispatch(setService(order))
       dispatch(setBarberServiceClient(item))

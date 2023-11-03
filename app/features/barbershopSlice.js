@@ -18,7 +18,7 @@ export const barbershopsSlice = createSlice({
   }
 })
 
-// Action creators are generated for each case reducer function
+
 export const { setBarbershops, setBarbershop } = barbershopsSlice.actions
 export const selectBarbershops = (state) => state.barbershops.barbershops
 export const selectBarbershop = (state) => state.barbershops.barbershop

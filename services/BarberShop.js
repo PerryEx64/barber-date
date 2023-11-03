@@ -20,7 +20,6 @@ export const MessageAuth = (message) => {
 }
 
 export const CreateUserBarbershop = (form) => {
-  // eslint-disable-next-line no-unused-vars
   const { type, ...formBarbershop } = form
 
   const formUser = {
@@ -32,22 +31,11 @@ export const CreateUserBarbershop = (form) => {
 
   createUserWithEmailAndPassword(auth, form.email, '12345678')
     .then(() => {
-      //Crea la barberia
-      /*  setDoc(doc(db, 'barbershops', form.id), form).then(() => {
-       
-      }) */
-
-      /**
-       * Crea usuario
-       * Crea barberia
-       */
       const batch = writeBatch(db)
 
-      //Crea usuario
       const refUsuario = doc(db, 'users', form.email)
       batch.set(refUsuario, formUser)
 
-      //Crea barberia
       const refBarberia = doc(db, 'barbershops', form.id)
       batch.set(refBarberia, formBarbershop)
 

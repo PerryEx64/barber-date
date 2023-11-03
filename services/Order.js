@@ -46,13 +46,12 @@ export const CreateOrder = async (order, user) => {
         throw 'no existe horario'
       }
 
-      //Busco la posicion del horario que la orden trae
+
       const reservation = query.data().reservation
       const positionSchedule = reservation.findIndex(
         (data) => data.hour == order.shedule
       )
 
-      //Actualizo el horario del barbero
       const updateScheduleRef = doc(
         db,
         'users',
@@ -61,7 +60,7 @@ export const CreateOrder = async (order, user) => {
         'schedule'
       )
 
-      //cambiamos el valor del horario de la reservacion
+   
       reservation[positionSchedule].status = false
       const newReservation = reservation
 
@@ -69,11 +68,9 @@ export const CreateOrder = async (order, user) => {
         reservation: newReservation
       })
 
-      //Guardo orden en coleccion principal
       const setOrderRef = doc(db, 'orders', order.id)
       transaction.set(setOrderRef, order)
 
-      //Guarda en el cliente infromacion para dar seguimiento
       const clientOrder = {
         id: order.id,
         direction: order.barberShop.direction,
@@ -90,7 +87,6 @@ export const CreateOrder = async (order, user) => {
       )
       transaction.set(saveOrderClientRef, clientOrder)
 
-      //Guarda en el barbero informacion para que se le muestre
       const barberOrder = {
         id: order.id,
         client: user.name,
@@ -117,11 +113,9 @@ export const DeleteOrdersFinishes = (client, barberEmail) => {
   try {
     const batch = writeBatch(db)
 
-    //Ref delete order client
     const clientRef = doc(db, 'users', client.email, 'orders', client.id)
     batch.delete(clientRef)
 
-    //Ref delete order barber
     const barberRef = doc(db, 'users', barberEmail, 'orders', client.id)
     batch.delete(barberRef)
 

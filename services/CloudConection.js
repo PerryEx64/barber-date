@@ -12,12 +12,10 @@ export const firebaseConfig = {
 }
 
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
 
 const db = getFirestore(app)
 
-// Init create User
 const auth = getAuth(app)
 
 export { auth, db }

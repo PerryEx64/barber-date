@@ -64,7 +64,6 @@ export const serviceSlice = createSlice({
   }
 })
 
-// Action creators are generated for each case reducer function
 export const {
   setService,
   setBarbershopService,

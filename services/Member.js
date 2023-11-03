@@ -10,13 +10,11 @@ export const CreateSchedule = async (idUser) => {
   const docRef = doc(db, 'settings', 'hours')
   const docSnap = await getDoc(docRef)
 
-  // Get a new write batch
+
   const batch = writeBatch(db)
 
   if (docSnap.exists()) {
-    /**
-     * Guardar calendario de horarios
-     */
+
     const saveScheduleRef = doc(db, 'users', idUser, 'settings', 'schedule')
     batch.set(saveScheduleRef, {
       daily: docSnap.data().hours,
@@ -61,13 +59,10 @@ export const GetSchedule = async (idUser, setData) => {
 }
 
 export const SaveSchedule = async (idUser, schedule) => {
-  // Get a new write batch
+
   const batch = writeBatch(db)
 
   const saveScheduleRef = doc(db, 'users', idUser, 'settings', 'schedule')
-  /*  batch.set(saveScheduleRef, {
-    hours: schedule
-  }) */
 
   batch.update(saveScheduleRef, {
     daily: schedule,

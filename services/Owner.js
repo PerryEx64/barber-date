@@ -15,13 +15,9 @@ export const CreateBarbers = (form, idBarbershop) => {
   }
   createUserWithEmailAndPassword(auth, form.id, '12345678')
     .then(async () => {
-      //crea barbero
-      const batch = writeBatch(db)
-      /**
-       * Gurdamos informacion del barbero en 2 lugares
-       */
 
-      // Lo agregamos a la barberia
+      const batch = writeBatch(db)
+
       const refSaveBarber = doc(
         db,
         'barbershops',
@@ -31,7 +27,6 @@ export const CreateBarbers = (form, idBarbershop) => {
       )
       batch.set(refSaveBarber, form)
 
-      // Lo agregamos a la coleccion de usuario
       const refUsuario = doc(db, 'users', form.id)
       batch.set(refUsuario, formUser)
 

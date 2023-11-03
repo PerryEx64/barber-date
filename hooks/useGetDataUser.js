@@ -20,10 +20,8 @@ function useGetDataUser() {
     if (docSnap.exists()) {
       const user = docSnap.data()
 
-      //guarda informacion del usuario
       dispatch(setUser(user))
 
-      //navegacion
       navigation.navigate(userTypeNavigate(user.type))
     }
   }

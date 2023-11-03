@@ -14,7 +14,6 @@ export const accountSlice = createSlice({
   }
 })
 
-// Action creators are generated for each case reducer function
 export const { setAvatarChosen } = accountSlice.actions
 export const selectAvatarChosen = (state) => state.account.avatarChosen
 
