@@ -3,11 +3,6 @@ import { doc, runTransaction, setDoc } from 'firebase/firestore'
 import { Alert } from 'react-native'
 import { auth, db } from './CloudConection'
 
-/**
- *
- * @param {*} data Informacion del formulario
- * @return
- */
 export const CreateUser = (data) => {
   return new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
@@ -25,9 +20,6 @@ export const CreateUserInCollection = async (data) => {
   await setDoc(doc(db, 'users', data.email), data)
 }
 
-/**
- *
- */
 export const onSignOut = () => {
   return new Promise((resolve) => {
     signOut(auth)
@@ -48,10 +40,8 @@ export const CreateBarberShops = async ({ searchEmail, data }) => {
       const sfDoc = await transaction.get(sfDocRef)
 
       if (!sfDoc.exists()) {
- 
         createUserWithEmailAndPassword(auth, data.email, password).then(
           (userCredential) => {
-  
             const barbershoRef = doc(db, 'barbershops', 'NYC')
             transaction.set(barbershoRef, data)
 

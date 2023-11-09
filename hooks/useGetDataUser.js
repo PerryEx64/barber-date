@@ -9,10 +9,6 @@ function useGetDataUser() {
   const dispatch = useDispatch()
   const navigation = useNavigation()
 
-  /**
-   * Obtiene unicamente un usuario de la coleccion users.
-   * @param {*} userCredential
-   */
   const getUser = async (userCredential) => {
     const docRef = doc(db, 'users', userCredential.user.email)
     const docSnap = await getDoc(docRef)

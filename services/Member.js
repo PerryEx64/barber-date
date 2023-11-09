@@ -2,10 +2,7 @@ import { doc, getDoc, onSnapshot, writeBatch } from 'firebase/firestore'
 import { Alert } from 'react-native'
 import { db } from './CloudConection'
 
-/**
- *
- * @param {*} idUser id para guardarlo en su coleccion
- */
+
 export const CreateSchedule = async (idUser) => {
   const docRef = doc(db, 'settings', 'hours')
   const docSnap = await getDoc(docRef)
@@ -27,11 +24,7 @@ export const CreateSchedule = async (idUser) => {
   }
 }
 
-/**
- * Obtiene el calendario del barbero
- * @param {*} idUser id del usuario
- * @param {*} setData hook para guardar la informacion obtenida
- */
+
 export const GetSettingsBarber = (idUser, setData) => {
   try {
     onSnapshot(doc(db, 'users', idUser, 'settings', 'schedule'), (doc) => {

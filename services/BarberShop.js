@@ -51,10 +51,6 @@ export const CreateUserBarbershop = (form) => {
     })
 }
 
-/**
- *
- * @param setData estado para guardar la informacion que se solicita
- */
 export const GetBarbershops = (setData) => {
   onSnapshot(collection(db, 'barbershops'), (doc) => {
     const result = doc.docs.map((doc) => doc.data())
@@ -62,10 +58,6 @@ export const GetBarbershops = (setData) => {
   })
 }
 
-/**
- * Obtiene los barberos de x barberia
- * @param setData estado para guardar la informacion que se solicita
- */
 export const GetBarbers = (dispatch, idBarbershop) => {
   onSnapshot(collection(db, 'barbershops', idBarbershop, 'barbers'), (doc) => {
     const result = doc.docs.map((doc) => doc.data())
@@ -73,11 +65,6 @@ export const GetBarbers = (dispatch, idBarbershop) => {
   })
 }
 
-/**
- *
- * @param {*} setData estado para guardar la informacion qu ese solicita
- * @param {*} idBarbershop identificador de la barberia
- */
 export const GetBarbershop = async (dispatch, idBarbershop) => {
   const docRef = doc(db, 'barbershops', idBarbershop)
   const docSnap = await getDoc(docRef)

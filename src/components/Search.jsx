@@ -3,14 +3,7 @@ import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { View, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
-/**
- *
- * @param {*} data Array donde se desea buscar
- * @param {*} setData Hook para guardar la informacion guardada
- * @param {*} type Campo que se desea buscar
- * @param {*} text
- * @returns
- */
+
 const Search = ({data, setData, type}) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {

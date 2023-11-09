@@ -35,17 +35,6 @@ const TabAdmin = () => {
           )
         }}
       />
-
-      {/*   <Tab.Screen
-        name='barbershop'
-        component={BarbersShop}
-        options={{
-          title: 'Barberias',
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name='person-circle-outline' size={size} color={color} />
-          )
-        }}
-      /> */}
     </Tab.Navigator>
   )
 }
