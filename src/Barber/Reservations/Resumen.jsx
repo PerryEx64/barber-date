@@ -24,7 +24,7 @@ const Resumen = () => {
         navigation.navigate('reservations')
       })
     } catch (error) {
-      console.log(error)
+      console.error('error 02')
     }
   }
   return (

@@ -20,8 +20,8 @@ const Login = () => {
   const widthScreen = Dimensions.get('window')
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      usuario: 'ventilador@gmail.com',
-      password: '12345678'
+      usuario: '',
+      password: ''
     }
   })
 

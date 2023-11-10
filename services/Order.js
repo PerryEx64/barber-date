@@ -15,7 +15,7 @@ export const GetOrders = async (idUser, setData) => {
       setData(result)
     })
   } catch (error) {
-    console.log(error)
+    console.eror(error)
   }
 }
 
@@ -31,7 +31,7 @@ export const GetOrder = async (idOrder) => {
 
     return query.data()
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
 
@@ -46,7 +46,6 @@ export const CreateOrder = async (order, user) => {
         throw 'no existe horario'
       }
 
-
       const reservation = query.data().reservation
       const positionSchedule = reservation.findIndex(
         (data) => data.hour == order.shedule
@@ -60,7 +59,6 @@ export const CreateOrder = async (order, user) => {
         'schedule'
       )
 
-   
       reservation[positionSchedule].status = false
       const newReservation = reservation
 
@@ -105,7 +103,7 @@ export const CreateOrder = async (order, user) => {
       transaction.set(saveOrderBarberRef, barberOrder)
     })
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
 
@@ -119,8 +117,8 @@ export const DeleteOrdersFinishes = (client, barberEmail) => {
     const barberRef = doc(db, 'users', barberEmail, 'orders', client.id)
     batch.delete(barberRef)
 
-     return batch.commit()
+    return batch.commit()
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

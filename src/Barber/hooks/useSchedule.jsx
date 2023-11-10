@@ -11,7 +11,7 @@ import {
 
 const useSchedule = () => {
   const user = useSelector(selectUser)
-  const [schedule, setSchedule] = React.useState({})
+  const [schedule, setSchedule] = React.useState()
   const [updated, setUpdated] = React.useState(false)
   const [change, setChange] = React.useState(0)
 

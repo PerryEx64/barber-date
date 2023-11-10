@@ -5,7 +5,6 @@ import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBarberServiceClient } from '../../../app/features/barberSlice'
 import { setService } from '../../../app/features/serviceSlice'
-import { selectMaxService } from '../../../app/features/timeSlice'
 import { selectUser } from '../../../app/features/userSlice'
 import { GetOrder, GetOrders } from '../../../services/Order'
 
@@ -14,13 +13,10 @@ const MyDates = () => {
   const [dates, setDates] = React.useState('')
   const dispatch = useDispatch()
   const navigation = useNavigation()
-  const maxService = useSelector(selectMaxService)
 
   React.useEffect(() => {
     GetOrders(user.email, setDates)
   }, [])
-
-  console.log(maxService)
 
   const handleNavigation = (item) => {
     GetOrder(item.id).then((res) => {

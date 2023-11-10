@@ -19,7 +19,6 @@ const Resumen = () => {
   const navigation = useNavigation()
   const { calculatePrice } = usePrice()
 
-  console.log(client)
   const handleDeleteOrder = () => {
 
     const dataClient = {
@@ -32,7 +31,7 @@ const Resumen = () => {
         Toast.show('Servicio Cancelado')
       })
     } catch (error) {
-      console.log(error)
+      console.error('error 01')
     }
   }
 
