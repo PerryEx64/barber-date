@@ -8,7 +8,7 @@ const CircleTop = () => {
     <View style={tailwind`items-end w-full`}>
       <Image
         source={require('../../../assets/circulo-login.png')}
-        style={tailwind`${widthScreen.width > 800 ? 'w-86 h-86' : 'h-52 w-52'}`}
+        style={tailwind`${widthScreen.width > 360 ? 'w-52 h-52' : 'h-36 w-36'}`}
       />
     </View>
   )

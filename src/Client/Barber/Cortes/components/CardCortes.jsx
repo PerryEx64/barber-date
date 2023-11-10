@@ -1,11 +1,7 @@
+import { AntDesign } from '@expo/vector-icons'
 import { Text } from '@ui-kitten/components'
 import React from 'react'
-import {
-  Image,
-  ImageBackground,
-  StyleSheet,
-  TouchableOpacity
-} from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { setCorteService } from '../../../../../app/features/serviceSlice'
 
@@ -35,14 +31,17 @@ const CardCortes = ({ corte, setChoose, choose }) => {
         )
       }}
     >
-      <ImageBackground
-        style={styles.imgBack}
-        source={
-          corte.id == choose
-            ? require('../../../../../assets/disabled.png')
-            : require('../../../../../assets/enabled.png')
-        }
-      >
+      <View style={styles.imgBack}>
+        {corte.id == choose ? (
+          <AntDesign
+            name='checkcircleo'
+            size={24}
+            color='green'
+            style={{ alignSelf: 'flex-end' }}
+          />
+        ) : (
+          <></>
+        )}
         <Image source={handleCorte()} style={styles.img} />
         <Text
           category='label'
@@ -53,7 +52,7 @@ const CardCortes = ({ corte, setChoose, choose }) => {
         >
           {corte.nombre.toUpperCase()}
         </Text>
-      </ImageBackground>
+      </View>
     </TouchableOpacity>
   )
 }

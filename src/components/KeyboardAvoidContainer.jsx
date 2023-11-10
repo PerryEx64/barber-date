@@ -3,7 +3,10 @@ import React from 'react'
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ScrollView
 } from 'react-native'
 
 const KeyboardAvoidContainer = ({ children }) => {
@@ -11,10 +14,12 @@ const KeyboardAvoidContainer = ({ children }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <Layout level='1' style={{ flex: 1 }}>
         <KeyboardAvoidingView
-          style={{ flex: 1}}
+          style={{ flex: 1 }}
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         >
-            {children}
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <ScrollView style={{}}>{children}</ScrollView>
+          </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
       </Layout>
     </SafeAreaView>

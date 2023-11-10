@@ -1,10 +1,11 @@
+import { AntDesign } from '@expo/vector-icons'
 import { Text } from '@ui-kitten/components'
 import React from 'react'
 import {
   Image,
-  ImageBackground,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from 'react-native'
 import { useDispatch } from 'react-redux'
 import {
@@ -19,26 +20,25 @@ const ImgChoose = ({ extra, item, choose, setChoose }) => {
   const onChoose = () => {
     setChoose(item.id)
     if (extra == 'cejas') {
-      dispatch(
-        setExtrasCejasService(item)
-      )
+      dispatch(setExtrasCejasService(item))
     } else {
-      dispatch(
-        setExtrasBarbaService(item)
-      )
+      dispatch(setExtrasBarbaService(item))
     }
   }
 
   return (
     <TouchableOpacity onPress={onChoose}>
-      <ImageBackground
-        style={styles.imgBack}
-        source={
-          item.id == choose
-            ? require('../../../../../assets/disabled.png')
-            : require('../../../../../assets/enabled.png')
-        }
-      >
+      <View style={styles.imgBack}>
+        {item.id == choose ? (
+          <AntDesign
+            name='checkcircleo'
+            size={24}
+            color='green'
+            style={{ alignSelf: 'flex-end' }}
+          />
+        ) : (
+          <></>
+        )}
         <Image
           source={extra == 'cejas' ? CejasImg(item.id) : BarbaImg(item.id)}
           style={styles.img}
@@ -55,7 +55,7 @@ const ImgChoose = ({ extra, item, choose, setChoose }) => {
         >
           Q{item.price}
         </Text>
-      </ImageBackground>
+      </View>
     </TouchableOpacity>
   )
 }

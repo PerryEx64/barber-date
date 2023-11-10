@@ -1,6 +1,6 @@
 import { Layout, Spinner, Text } from '@ui-kitten/components'
 import React from 'react'
-import { Alert, FlatList, StyleSheet, View } from 'react-native'
+import { Alert, FlatList, ScrollView, StyleSheet, View } from 'react-native'
 import { useSelector } from 'react-redux'
 import tailwind from 'twrnc'
 import { selectBarberChosen } from '../../../../app/features/barberSlice'
@@ -29,36 +29,38 @@ const Schedule = () => {
 
   return (
     <Layout level='1' style={styles.container}>
-      <Text category='h5' style={tailwind`text-center my-3`}>
-        {'Disponibilidad de Horarios'}
-      </Text>
+      <ScrollView horizontal={false}>
+        <Text category='h5' style={tailwind`text-center my-3`}>
+          {'Disponibilidad de Horarios'}
+        </Text>
 
-      <View style={styles.content}>
-        <Avatar avatar={barberChosen.avatar} size={'lg'} />
+        <View style={styles.content}>
+          <Avatar avatar={barberChosen.avatar} size={'lg'} />
 
-        <FlatList
-          style={styles.flatList}
-          data={schedule.reservation}
-          ListEmptyComponent={() => (
-            <View style={tailwind`self-center my-3`}>
-              <Spinner status='warning' style={tailwind`ml-auto mr-auto`} />
-            </View>
-          )}
-          ListHeaderComponent={() => <ListHeader name={barberChosen.name} />}
-          ListFooterComponent={() => (
-            <FooterComponent chooseHour={chooseHour} />
-          )}
-          renderItem={({ item, index }) => (
-            <SelectSchedule
-              choose={choose}
-              index={index}
-              item={item}
-              setChoose={setChoose}
-              setChooseHour={setChooseHour}
-            />
-          )}
-        />
-      </View>
+          <FlatList
+            style={styles.flatList}
+            data={schedule.reservation}
+            ListEmptyComponent={() => (
+              <View style={tailwind`self-center my-3`}>
+                <Spinner status='warning' style={tailwind`ml-auto mr-auto`} />
+              </View>
+            )}
+            ListHeaderComponent={() => <ListHeader name={barberChosen.name} />}
+            ListFooterComponent={() => (
+              <FooterComponent chooseHour={chooseHour} />
+            )}
+            renderItem={({ item, index }) => (
+              <SelectSchedule
+                choose={choose}
+                index={index}
+                item={item}
+                setChoose={setChoose}
+                setChooseHour={setChooseHour}
+              />
+            )}
+          />
+        </View>
+      </ScrollView>
     </Layout>
   )
 }
@@ -80,6 +82,7 @@ const styles = StyleSheet.create({
     padding: 25,
     shadowRadius: 10,
     borderWidth: 1,
+    marginBottom: 10,
     marginTop: 65,
     gap: 20,
     position: 'relative',

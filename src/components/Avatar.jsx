@@ -1,7 +1,8 @@
 import React from 'react'
-import { Image, StyleSheet } from 'react-native'
+import { Dimensions, Image, StyleSheet } from 'react-native'
 
 const Avatar = ({ avatar, size }) => {
+  const sizeScreen = Dimensions.get('window')
   const handleAvatar = () => {
     const requires = {
       1: require('../../assets/avatars/1.png'),
@@ -15,9 +16,9 @@ const Avatar = ({ avatar, size }) => {
 
   const handleSize = (sizeIcon) => {
     const sizes = {
-      sm: 24,
-      md: 85,
-      lg: 110
+      sm: sizeScreen.width > 400 ? 24 : 20,
+      md: sizeScreen.width > 400 ? 85 : 75,
+      lg: sizeScreen.width > 400 ? 110 : 100
     }
 
     return sizes[sizeIcon]

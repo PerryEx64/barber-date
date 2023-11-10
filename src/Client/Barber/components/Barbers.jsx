@@ -1,7 +1,13 @@
 import { useNavigation } from '@react-navigation/native'
 import { Text } from '@ui-kitten/components'
 import React from 'react'
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View
+} from 'react-native'
 import { useDispatch } from 'react-redux'
 import tailwind from 'twrnc'
 import { setBarberChosen } from '../../../../app/features/barberSlice'
@@ -12,12 +18,14 @@ import { Colors } from '../../../utils/Colors'
 const Barbers = ({ barber }) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
+  const sizeScreen = Dimensions.get('window')
+  const priceService = 30
 
   const handleSubmit = () => {
     dispatch(setBarberChosen(barber))
     dispatch(
       setBarberService({
-        price: barber.price,
+        price: priceService,
         data: {
           id: barber.id,
           name: barber.name
@@ -43,14 +51,16 @@ const Barbers = ({ barber }) => {
         <Text
           category='c2'
           style={tailwind`text-center`}
-        >{`Tarifa Q${barber.price}.00`}</Text>
+        >{`Tarifa Q${priceService}.00`}</Text>
         <TouchableOpacity
           style={tailwind`self-end`}
           onPress={() => handleSubmit()}
         >
           <Image
             source={require('../../../../assets/icons/ic_plus.png')}
-            style={tailwind`h-8 w-8`}
+            style={tailwind`${
+              sizeScreen.width < 400 ? ' h-8 w-8 ' : 'h-8 w-8'
+            }`}
           />
         </TouchableOpacity>
       </View>

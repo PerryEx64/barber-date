@@ -16,7 +16,7 @@ const FooterLogin = () => {
   }
 
   return (
-    <View style={tailwind`gap-3 m-5`}>
+    <View style={{gap: 5, margin: 10, justifyContent: 'center'}}>
       <View
         style={{
           flexDirection: 'row',

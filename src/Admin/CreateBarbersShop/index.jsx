@@ -13,11 +13,11 @@ const CreateBarbersShop = () => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
       id: uuidv4(),
-      nameBarbershop: 'Espada Nueva',
-      addreess: 'barrios la esperanza, 20 avenida 14 calle',
-      phone: '30948390',
-      owner: 'Daniel Osorio',
-      email: 'danielosorio@gmail.com',
+      nameBarbershop: '',
+      addreess: '',
+      phone: '',
+      owner: '',
+      email: '',
       type: 'owner',
       barbers: []
     }

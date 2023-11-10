@@ -12,5 +12,6 @@ export const BarbersRegister = {
   status: true,
   enabled: true,
   created_At: date,
-  updated_At: date
+  updated_At: date,
+  price: 30
 }

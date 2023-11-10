@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import { Image } from 'react-native'
@@ -26,12 +27,10 @@ const TabAdmin = () => {
         name='cortes'
         component={Cortes}
         options={{
-          title: 'Cortes',
+          title: 'Perfil',
+          headerShown: true,
           tabBarIcon: ({ size, color }) => (
-            <Image
-              source={require('../assets/icons/corte.png')}
-              style={{ height: size, width: size, tintColor: color }}
-            />
+            <Ionicons name='person-circle-outline' size={size} color={color} />
           )
         }}
       />

@@ -1,6 +1,6 @@
-import { Button, Layout, Text, Toggle } from '@ui-kitten/components'
+import { Button, Text, Toggle } from '@ui-kitten/components'
 import React from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, View } from 'react-native'
 import Avatar from '../../components/Avatar'
 import { Colors } from '../../utils/Colors'
 import useSchedule from '../hooks/useSchedule'
@@ -31,7 +31,7 @@ const Schedule = () => {
   )
 
   return (
-    <Layout level='1' style={{ flex: 1 }}>
+    <ScrollView level='1' style={{ flex: 1 }}>
       <View style={styles.container}>
         <Text category='h6'>{'Horario de atencion'}</Text>
         <Text category='s1' status='danger'>
@@ -67,7 +67,7 @@ const Schedule = () => {
           )}
         </View>
       )}
-    </Layout>
+    </ScrollView>
   )
 }
 
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     borderWidth: 1,
     marginTop: 55,
+    marginBottom: 10,
     gap: 20,
     position: 'relative',
     borderRadius: 15,
@@ -107,6 +108,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '60%',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    marginBottom: 10
   }
 })

@@ -1,8 +1,9 @@
+import { Ionicons } from '@expo/vector-icons'
 import { Button, Input, Spinner, Text } from '@ui-kitten/components/ui'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Dimensions, Image, TouchableWithoutFeedback, View } from 'react-native'
+import { Dimensions, TouchableWithoutFeedback, View } from 'react-native'
 import Toast from 'react-native-root-toast'
 import tailwind from 'twrnc'
 import useGetDataUser from '../../hooks/useGetDataUser'
@@ -11,7 +12,6 @@ import KeyBoardAvoidContainer from '../components/KeyboardAvoidContainer'
 import { MessageAuth } from '../utils/MessageAuth'
 import CircleTop from './components/CircleTop'
 import FooterLogin from './components/FooterLogin'
-import { Ionicons } from '@expo/vector-icons'
 
 const Login = () => {
   const [loading, setLoading] = React.useState(false)
@@ -60,7 +60,9 @@ const Login = () => {
 
   return (
     <KeyBoardAvoidContainer>
-      <View style={{ flex: 1, justifyContent: 'space-between' }}>
+      <View
+        style={{ height: widthScreen.height, justifyContent: 'space-between' }}
+      >
         <CircleTop />
         <View style={{ marginHorizontal: 25 }}>
           <Text
@@ -129,17 +131,7 @@ const Login = () => {
             </View>
           )}
         </View>
-
         <FooterLogin />
-
-        <View style={tailwind`ml-5`}>
-          <Image
-            source={require('../../assets/circulo-login-down.png')}
-            style={tailwind`${
-              widthScreen.width > 800 ? 'w-86 h-86' : 'h-56 w-56'
-            }`}
-          />
-        </View>
       </View>
     </KeyBoardAvoidContainer>
   )
