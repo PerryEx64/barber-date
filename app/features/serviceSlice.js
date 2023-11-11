@@ -39,6 +39,11 @@ export const serviceSlice = createSlice({
     setService: (state, action) => {
       state.service = action.payload
     },
+    setPrice: (state, action) => {
+      state.service.price = 0
+      state.service.extra.cejas.price = 0
+      state.service.extra.barba.price = 0
+    },
     setBarbershopService: (state, action) => {
       state.service.barberShop = action.payload
     },
@@ -46,8 +51,7 @@ export const serviceSlice = createSlice({
       state.service.barber = action.payload.data
 
       const price = state.service.price
-      state.service.price = (action.payload.price + price)
-
+      state.service.price = action.payload.price + price
     },
     setScheduleService: (state, action) => {
       state.service.shedule = action.payload
@@ -65,6 +69,7 @@ export const serviceSlice = createSlice({
 })
 
 export const {
+  setPrice,
   setService,
   setBarbershopService,
   setBarberService,

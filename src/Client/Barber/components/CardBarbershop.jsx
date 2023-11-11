@@ -4,12 +4,14 @@ import { Image, TouchableOpacity, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import tailwind from 'twrnc'
 import { setBarbershops } from '../../../../app/features/barbershopSlice'
-import { setBarbershopService } from '../../../../app/features/serviceSlice'
+import {
+  setBarbershopService
+} from '../../../../app/features/serviceSlice'
 import { GetBarbers } from '../../../../services/BarberShop'
 
 const CardBarbershop = ({ barbershop, admin }) => {
   const dispatch = useDispatch()
-  
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -18,11 +20,13 @@ const CardBarbershop = ({ barbershop, admin }) => {
         } else {
           GetBarbers(dispatch, barbershop.id)
         }
-        dispatch(setBarbershopService({
-          id: barbershop.id,
-          name: barbershop.nameBarbershop,
-          direction: barbershop.addreess
-        }))
+        dispatch(
+          setBarbershopService({
+            id: barbershop.id,
+            name: barbershop.nameBarbershop,
+            direction: barbershop.addreess
+          })
+        )
       }}
       style={tailwind`flex-row justify-between p-3 items-center shadow bg-[#16196A] rounded-2xl my-1`}
     >

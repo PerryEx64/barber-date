@@ -1,7 +1,7 @@
 import { Layout, Text } from '@ui-kitten/components'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import tailwind from 'twrnc'
 import {
   selectBarbers,
@@ -11,11 +11,13 @@ import Search from '../../components/Search'
 import useBarber from '../hooks/useBarber'
 import Barbers from './components/Barbers'
 import CardBarbershop from './components/CardBarbershop'
+import { setPrice } from '../../../app/features/serviceSlice'
 
 const Barber = () => {
   const { barberShops } = useBarber()
   const barberShopChosen = useSelector(selectBarbershopChosen)
   const barbers = useSelector(selectBarbers)
+  const dispatch = useDispatch()
 
   const barbersLenght = barbers.length
 
@@ -27,6 +29,9 @@ const Barber = () => {
     return result
   }
 
+  useEffect(() => {
+    dispatch(setPrice(0))
+  }, [])
   return (
     <Layout
       style={tailwind`flex-1 px-8 pt-5 ${
